@@ -27,7 +27,6 @@ class Category(models.Model):
 
 class CategoryTwo(models.Model):
     category_name =models.CharField(max_length=20,unique=True)
-    category_two = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
        return f'{self.category_name}'

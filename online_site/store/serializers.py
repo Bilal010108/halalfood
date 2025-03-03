@@ -8,6 +8,11 @@ class UserProfileSerializers(serializers.ModelSerializer):
         fields = ['last_name','first_name','phone_number','user_role','age']
 
 
+class UserProfileSimpleSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['last_name','first_name']
+
 
 
 class CategorySerializers(serializers.ModelSerializer):
@@ -15,6 +20,11 @@ class CategorySerializers(serializers.ModelSerializer):
         model = Category
         fields =['category_name']
 
+
+class CategorySimpleSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields =['category_name']
 
 class CategoryTwoSerializers(serializers.ModelSerializer):
     class Meta:
@@ -24,9 +34,12 @@ class CategoryTwoSerializers(serializers.ModelSerializer):
 
 
 class StoreSerializers(serializers.ModelSerializer):
+    owner = UserProfileSimpleSerializers(read_only=True, )
+    category_name =CategorySimpleSerializers(read_only=True,many=True)
+
     class Meta:
         model = Store
-        fields =['store_name','store_description',
+        fields =['category_name','store_name','store_description',
                  'contact_info','address','owner','store_image']
 
 

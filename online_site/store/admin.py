@@ -27,14 +27,9 @@ class StoreAdmin(TranslationAdmin):
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
 
-class CategoryTwoInline(admin.TabularInline):
-    model = CategoryTwo
-    extra = 1
-
 
 @admin.register(Category)
 class CategoryAdmin(TranslationAdmin):
-    inlines = [CategoryTwoInline]
     class Media:
         js = (
             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
@@ -46,6 +41,7 @@ class CategoryAdmin(TranslationAdmin):
         }
 
 admin.site.register(UserProfile)
+admin.site.register(CategoryTwo)
 admin.site.register(Order)
 admin.site.register(Cart)
 admin.site.register(CartItem)
